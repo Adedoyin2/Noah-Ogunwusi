@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noah Ogunwusi | Tech Professional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sky-blue: #4A90E2;
+            --dark-blue: #2C5AA0;
+            --light-blue: #87CEEB;
+            --sky-gradient: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+            --white: #ffffff;
+            --black: #1a1a1a;
+            --gray: #6b7280;
+            --light-gray: #f3f4f6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 5%;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--sky-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: none;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--sky-blue);
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--sky-blue);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* MOBILE MENU */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            transition: right 0.4s ease;
+            z-index: 999;
+            padding: 80px 2rem 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .mobile-links a:hover {
+            color: var(--sky-blue);
+        }
+
+        .mobile-social {
+            margin-top: 3rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .mobile-social a {
+            font-size: 1.5rem;
+            color: var(--sky-blue);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--sky-gradient);
+            padding: 100px 5% 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-text .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: inline;
+            white-space: nowrap;
+        }
+
+        .hero-text p {
+            color: var(--white);
+            font-size: 1rem;
+            margin: 1.5rem 0;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--sky-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .social-links a img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .social-links a:hover {
+            background: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .social-links a:hover img {
+            filter: brightness(0) invert(0.5) sepia(1) saturate(5) hue-rotate(180deg);
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            padding: 80px 5%;
+            background: var(--white);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .about.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--black);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--sky-gradient);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image-circle {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--sky-blue);
+            box-shadow: 0 10px 40px rgba(74, 144, 226, 0.3);
+            animation: floatImage 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        .about-image-circle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--sky-gradient);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .about-image-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* SERVICES SECTION */
+        .services {
+            padding: 80px 5%;
+            background: var(--light-gray);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .services.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .services-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2);
+        }
+
+        .service-card.clicked {
+            animation: clickBounce 0.6s ease;
+        }
+
+        .service-card h3 {
+            color: var(--sky-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* PRODUCTS SECTION */
+        .products {
+            padding: 80px 5%;
+            background: var(--white);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .products.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(74, 144, 226, 0.3);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* MODAL FOR PRODUCTS */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: var(--white);
+            font-size: 40px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--sky-blue);
+        }
+
+        /* TIMELINE SECTION */
+        .timeline {
+            padding: 80px 5%;
+            background: var(--light-gray);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 2rem 3rem;
+            border-left: 3px solid var(--light-blue);
+        }
+
+        .timeline-item:last-child {
+            border: none;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            background: var(--sky-blue);
+            border-radius: 50%;
+        }
+
+        .timeline-item h3 {
+            color: var(--sky-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--gray);
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            padding: 80px 5%;
+            background: var(--white);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .contact.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 15px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .contact-item:hover {
+            background: var(--sky-blue);
+            transform: translateX(10px);
+        }
+
+        .contact-item:hover .contact-icon {
+            color: var(--white);
+        }
+
+        .contact-item:hover .contact-info h3,
+        .contact-item:hover .contact-info span {
+            color: var(--white);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--sky-blue);
+            transition: color 0.3s;
+        }
+
+        .contact-info h3 {
+            font-size: 1.2rem;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info span {
+            color: var(--gray);
+            font-size: 1.05rem;
+            transition: color 0.3s;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-social a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--sky-blue);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes floatImage {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes clickBounce {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        /* DESKTOP RESPONSIVE */
+        @media (min-width: 768px) {
+            .hamburger {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .hero-text .name {
+                font-size: 4rem;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr 1.5fr;
+            }
+
+            .about-image-circle {
+                width: 300px;
+                height: 300px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">NOABYTE</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#timeline">Timeline</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-social">
+            <a href="https://x.com/OgunwusiAdedoyin3?s=09"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/noah.ogunwusi.5"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/adedoyin_ogunwusi"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ogunwusi-adedoyin-104154251"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Hello, I'm
+                    <span class="name">Noah Ogunwusi</span>
+                </h1>
+                <p>A Certified Website Developer || Graphic Designer || Video Editor || UI/UX Designer || Social Media Manager || Blogger</p>
+                <a href="#contact" class="btn-primary">Hire Me</a>
+                <div class="social-links">
+                    <a href="https://x.com/OgunwusiAdedoyin3?s=09">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z'/%3E%3C/svg%3E" alt="Twitter">
+                    </a>
+                    <a href="https://www.facebook.com/noah.ogunwusi.5">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z'/%3E%3C/svg%3E" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/adedoyin_ogunwusi">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/%3E%3C/svg%3E" alt="Instagram">
+                    </a>
+                    <a href="https://www.linkedin.com/in/ogunwusi-adedoyin-104154251">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'/%3E%3C/svg%3E" alt="LinkedIn">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="about-image-circle">
+                        <!-- <img src="Profi Image .jpg"alt="Noah Ogunwusi"> -->
+                        <img src="Prof img.jpg"alt="Noah Ogunwusi">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>I'm a multi-skilled Web Developer, UI/UX Designer, Graphics Designer, Video Editor, and Social 
+                        Media Manager with vast experience in building digital solutions and managing creative content. 
+                        With a Higher National Diploma (HND) in Computer Science, I have consistently combined technical 
+                        expertise with a deep sense of creativity and purpose.
+                    I possess strong leadership and communication skills, which have earned me roles such as Head of 
+                    Media across various organizations, where I've led teams, delivered results, and built impactful 
+                    digital campaigns. Certified in multiple tech fields, I've also had the privilege of training others,
+                     helping them grow in their tech journey.
+                    My passion for excellent design, strategic media, and intentional storytelling reflects in every
+                     project I undertake. Above all, I'm a passionate believer, and my relationship with God is the 
+                     foundation of everything I do. It has shaped my character, fueled my growth, and guided my impact.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Web Development</h3>
+                    <p>I build responsive, fast, and secure websites tailored to meet your business or personal needs, from landing pages to full-stack web applications.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Video Editing</h3>
+                    <p>I offer professional video editing services that bring your content to life. From promos to social media content, we help your visuals stand out.</p>
+                </div>
+                <div class="service-card">
+                    <h3>UI/UX Design</h3>
+                    <p>I design intuitive and visually appealing user interfaces that enhance user experience and drive engagement for your digital products.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Graphic Design</h3>
+                    <p>I offer creative and professional graphic design services that visually communicate your brand message. From logos and flyers to banners and social media content.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Social Media Management</h3>
+                    <p>I help brands grow and stay relevant online by managing their social media presence. From content planning and design to scheduling, engagement, and analytics.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Bloge Content</h3>
+                    <p>I design, develop, and manage blogs that are visually appealing, easy to navigate, and optimized for performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Products</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-image="Monday.png">
+                    <img src="Monday.png" alt="Happy New Week Design">
+                </div>
+                <div class="product-card" data-image="Tgif.png">
+                    <img src="Tgif.png" alt="Sunday Church Design">
+                </div>
+                <div class="product-card" data-image="Week end.png">
+                    <img src="Week end.png" alt="TGIF Design">
+                </div>
+                <div class="product-card" data-image="Sunday.jpg">
+                    <img src="Sunday.jpg" alt="Product 4">
+                </div>
+                <div class="product-card" data-image="Nigeria.jpg">
+                    <img src="Nigeria.jpg" alt="Product 5">
+                </div>
+                <div class="product-card" data-image="Ui.jpg">
+                    <img src="Ui.jpg" alt="Product 6">
+                </div>
+                <div class="product-card" data-image="Ade.jpg">
+                    <img src="Ade.jpg" alt="Product 7">
+                </div>
+                <div class="product-card" data-image="Shewa.jpg">
+                    <img src="Shewa.jpg" alt="Weekend Design">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL FOR PRODUCTS -->
+    <div class="modal" id="productModal">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Product Preview">
+        </div>
+    </div>
+
+    <!-- TIMELINE SECTION -->
+    <section class="timeline" id="timeline">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Journey</h2>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <h3>2025 - Completion & Readiness</h3>
+                    <p>I successfully completed my Computer Science degree, graduating with deep technical knowledge and practical experience. With strong capabilities across multiple tech domains, I'm now fully equipped to solve real-world problems in the field, yet, I continue to learn and innovate daily.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2024 - Recognition & Awards</h3>
+                    <p>My efforts were recognized with a "Most Outstanding Media Talent" award for my dedication, passion, and results in the tech space. I also received several certificates of achievement for my impact and contributions to the tech community.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2023 - Execution & Leadership</h3>
+                    <p>I applied everything I learned by working on personal projects, collaborations, and even client-based work. I also mentored my fellow students, guiding them through their own tech journeys and helping them execute successful projects.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2022 - Growth & Exposure</h3>
+                    <p>In my second year, I deepened my interest in various tech fields, including Web Design/Development, Graphic Design, Video Editing, UI/UX Design, Social Media Management, and Blogging. That year, I also undertook my SIWES at Digprom Tech, Ilorin, Kwara State.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2021 - The Beginning</h3>
+                    <p>October 23, 2021 I gained admission into the Federal School of Statistics to study Computer Science. This marked the beginning of my journey into the tech world, where I was first introduced to core technology concepts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Let's Get In Touch</h2>
+            </div>
+            <div class="contact-grid">
+                <a href="https://wa.me/2348039819143" target="_blank" class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Chat on WhatsApp</h3>
+                        <span>Click to message me, i'm very fast to responce</span>
+                    </div>
+                </a>
+                <a href="mailto:ogunwusiadedoyin3@gmail.com" class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Send Me A Mail</h3>
+                        <span>Click to email me</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-social">
+                <a href="https://x.com/OgunwusiAdedoyin3?s=09"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/noah.ogunwusi.5"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/adedoyin_ogunwusi"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/ogunwusi-adedoyin-104154251"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2025 Ogunwusi Adedoyin Noah. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-links a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections
+        document.querySelectorAll('.about, .services, .products, .timeline, .contact').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Service cards scroll animation
+        const serviceCards = document.querySelectorAll('.service-card');
+        const serviceObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        serviceCards.forEach(card => {
+            serviceObserver.observe(card);
+        });
+
+        // Service card click animation
+        serviceCards.forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 600);
+            });
+        });
+
+        // Product cards scroll animation
+        const productCards = document.querySelectorAll('.product-card');
+        const productObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        productCards.forEach(card => {
+            productObserver.observe(card);
+        });
+
+        // Product Modal
+        const modal = document.getElementById('productModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+
+        productCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                const imgData = this.getAttribute('data-image');
+                
+                // Use actual image if available, otherwise use placeholder
+                modalImage.src = imgData || imgSrc;
+                modal.classList.add('active');
+            });
+        });
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
